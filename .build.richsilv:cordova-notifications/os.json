@@ -1,0 +1,31 @@
+{
+  "format": "unipackage-unibuild-pre1",
+  "packageVariables": [
+    {
+      "name": "NotificationClient",
+      "export": true
+    },
+    {
+      "name": "Cordova",
+      "export": true
+    }
+  ],
+  "uses": [
+    {
+      "package": "meteor"
+    },
+    {
+      "package": "http"
+    }
+  ],
+  "resources": [
+    {
+      "type": "prelink",
+      "file": "os/packages/richsilv:cordova-notifications.js",
+      "length": 18160,
+      "offset": 0,
+      "servePath": "/packages/richsilv:cordova-notifications.js",
+      "sourceMap": "os/packages/richsilv:cordova-notifications.js.map"
+    }
+  ]
+}

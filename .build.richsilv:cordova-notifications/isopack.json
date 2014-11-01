@@ -1,0 +1,29 @@
+{
+  "isopack-1": {
+    "name": "richsilv:cordova-notifications",
+    "summary": "",
+    "version": "0.0.0+36ea128abbd1fbe30f7d8697868915710330e153",
+    "earliestCompatibleVersion": "0.0.0",
+    "isTest": false,
+    "builds": [
+      {
+        "arch": "os",
+        "path": "os.json"
+      },
+      {
+        "arch": "web.browser",
+        "path": "web.browser.json"
+      },
+      {
+        "arch": "web.cordova",
+        "path": "web.cordova.json"
+      }
+    ],
+    "plugins": [],
+    "cordovaDependencies": {
+      "de.appplant.cordova.plugin.local-notification": "0.7.6",
+      "com.phonegap.plugins.pushplugin": "2.2.1",
+      "org.apache.cordova.dialogs": "0.2.10"
+    }
+  }
+}
