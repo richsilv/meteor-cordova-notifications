@@ -35,6 +35,8 @@ var notificationClient = new NotificationClient(options)
 
 ## API
 
+Note that NotificationClient can only be used to send messages to users who have previously logged in to the app on a mobile device (via any means).
+
 ### NotificationClient.sendNotification(users, data) [SERVER ONLY]
 
 Send a notification to the specified users.
