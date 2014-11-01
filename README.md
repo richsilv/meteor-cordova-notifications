@@ -9,7 +9,7 @@ Push notifications are a widely used and extremely useful feature of native apps
 
 In Meteor, the ability to drop Cordova-specific and server-specific code into the same package obviates the need for any heavy-lifting on the part of the developer, whilst the Accounts package provides the infrastructure necessary for storing notification ids by user.
 
-The result is a plug-and-play notifications package which should be very straightforward to user.
+The result is a plug-and-play notifications package which should be extremely straightforward to use.
 
 **NOTE THAT AT PRESENT, ONLY ANDROID NOTIFICATIONS (VIA GCM) ARE IMPLEMENTED**
 
