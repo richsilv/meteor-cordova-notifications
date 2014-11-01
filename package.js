@@ -13,9 +13,9 @@ Cordova.depends({
 
 Package.on_use(function(api) {
 
-  api.use('tracker', 'web.cordova');
-  api.use('http', 'server');
-  api.use('accounts-base', 'client');
+  api.use('tracker@1.0.3', 'web.cordova');
+  api.use('http@1.0.8', 'server');
+  api.use('accounts-base@1.1.2', 'client');
 
   api.add_files('cordova-both.js');
   api.add_files('cordova-server.js', 'server')
