@@ -5,7 +5,7 @@ Simple push notifications for Cordova apps built using Meteor.
 
 ## Why?
 
-Push notifications are a widely used and extremely useful feature of native apps. However, although packages exist to help with device registration and notification presentation on the client side (Cordova) and coordination of calls to the notifications server (e.g. NPM), due to the separation of client and server code, setting these up still required some wiring to be done on the part of the developer.
+Push notifications are a widely used and extremely useful feature of native apps. However, although packages exist to help with device registration and notification presentation on the client side (Cordova) and coordination of calls to the notifications server on the server side (e.g. NPM), due to the separation of client and server code, setting these up still required some wiring to be done on the part of the developer.
 
 In Meteor, the ability to drop Cordova-specific and server-specific code into the same package obviates the need for any heavy-lifting on the part of the developer, whilst the Accounts package provides the infrastructure necessary for storing notification ids by user.
 
