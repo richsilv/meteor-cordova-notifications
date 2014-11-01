@@ -56,6 +56,8 @@ The GCM protocol is actually much more flexible than this - an arbitrary object 
 
 Note that a `Cordova` object is added to the global namespace on the client side - this is necessary as the GCM server requires a function in global scope to be supplied as a callback.
 
+## Demo - [here](https://github.com/richsilv/cordova-notifications-demo)
+
 ## TODO
 
 * Add Apple notifications.
