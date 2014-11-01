@@ -31,6 +31,8 @@ var notificationClient = new NotificationClient(options)
 
 *__registeredCallback__ (optional)* - a function to call on the client once it registers a new *regid* in the database and is thus ready to accept push notifications.
 
+*__messageHandler__ (optional)* - a function to override the default handler which is called on receipt of a new notification message.  It is called with two arguments: `payload`, which contains the data payload supplied to the notifications server, and `foreground`, a boolean which indicates whether the application is currently running in the foreground.  The default handler behaviour is described below.
+
 ## API
 
 ### NotificationClient.sendNotification(users, data) [SERVER ONLY]
@@ -46,8 +48,13 @@ Send a notification to the specified users.
 
 If the application is currently open in the foreground, a default UI alert box pops up with the supplied title and message.  If the application is not open in the foreground, a local notification is added to the notifications tray with the supplied title and message.
 
-However, an arbitrary object (up to 4kb) can be passed, which can be used as the user sees fit by customising the `onNotificationGCM` callback.
+### Overriding the default behavior
 
-At the moment the returned object is empty, but methods may be added in future.
+The GCM protocol is actually much more flexible than this - an arbitrary object (up to 4kb) can be passed as the payload, whilst the client callback on receipt of notifications can be completeley customised by overriding the `messageHandler` callback (see above).  See `cordova-both.js` for the code behind the default behaviour.
 
-Calling `NotificationClient` will, however, add a `Cordova` object to the global namespace - this is necessary as GCM requires a handler callback which is within global scope.
+Note that a `Cordova` object is added to the global namespace on the client side - this is necessary as the GCM server requires a function in global scope to be supplied as a callback.
+
+## TODO
+
+* Add Apple notifications.
+* Allow user to choose alert/local-notification/none upon receipt of messages when the app is in the foreground/background.
