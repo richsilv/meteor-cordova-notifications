@@ -18,27 +18,32 @@ if (Meteor.isCordova) {
             console.log("Error " + e);
         };
 
+        var messageHandler = options.messageHandler || function(payload, foreground) {
+            if (!payload) return null;
+            if (foreground) {
+                navigator.notification.alert(
+                    payload.message,
+                    options.alertCallback,
+                    payload.title
+                );
+            } else {
+                window.plugin.notification.local.add(
+                    _.extend(options.notificationOptions, {
+                        message: payload.message,
+                        title: payload.title,
+                        autoCancel: true
+                    })
+                );
+            }
+        };
+
         Cordova.onNotificationGCM = options.onNotificationGCM || function(res) {
             if (res.event === 'registered') {
                 if (res.regid) {
                     Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback);
                 }
             } else if (res.event === 'message') {
-                if (res.foreground) {
-                    navigator.notification.alert(
-                        res.payload.message,
-                        options.alertCallback,
-                        res.payload.title
-                    );
-                } else if (res.payload) {
-                    window.plugin.notification.local.add(
-                        _.extend(options.notificationOptions, {
-                            message: res.payload.message,
-                            title: res.payload.title,
-                            autoCancel: true
-                        })
-                    );
-                }
+                messageHandler(res.payload, res.foreground);
             }
         }
 
@@ -68,7 +73,7 @@ if (Meteor.isCordova) {
         var Future = Npm.require('fibers/future'),
             instance = {};
 
-        Cordova.sendNotifications = function(users, data) {
+        instance.sendNotification = function(users, data) {
 
             if (typeof users === 'string')
                 users = Meteor.users.find(users).fetch();

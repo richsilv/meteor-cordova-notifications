@@ -16,13 +16,16 @@
     },
     {
       "package": "tracker"
+    },
+    {
+      "package": "accounts-base"
     }
   ],
   "resources": [
     {
       "type": "prelink",
       "file": "web.cordova/packages/richsilv:cordova-notifications.js",
-      "length": 16540,
+      "length": 17120,
       "offset": 0,
       "servePath": "/packages/richsilv:cordova-notifications.js",
       "sourceMap": "web.cordova/packages/richsilv:cordova-notifications.js.map"

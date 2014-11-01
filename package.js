@@ -13,6 +13,7 @@ Package.on_use(function(api) {
 
   api.use('tracker', 'web.cordova');
   api.use('http', 'server');
+  api.use('accounts-base', 'client');
 
   api.add_files('cordova-both.js');
   api.add_files('cordova-server.js', 'server')

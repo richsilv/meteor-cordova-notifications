@@ -22,7 +22,7 @@
     {
       "type": "prelink",
       "file": "os/packages/richsilv:cordova-notifications.js",
-      "length": 18160,
+      "length": 18740,
       "offset": 0,
       "servePath": "/packages/richsilv:cordova-notifications.js",
       "sourceMap": "os/packages/richsilv:cordova-notifications.js.map"

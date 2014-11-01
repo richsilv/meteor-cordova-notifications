@@ -26,122 +26,127 @@ if (Meteor.isCordova) {                                                         
             console.log("Error " + e);                                                                       // 18
         };                                                                                                   // 19
                                                                                                              // 20
-        Cordova.onNotificationGCM = options.onNotificationGCM || function(res) {                             // 21
-            if (res.event === 'registered') {                                                                // 22
-                if (res.regid) {                                                                             // 23
-                    Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback); // 24
-                }                                                                                            // 25
-            } else if (res.event === 'message') {                                                            // 26
-                if (res.foreground) {                                                                        // 27
-                    navigator.notification.alert(                                                            // 28
-                        res.payload.message,                                                                 // 29
-                        options.alertCallback,                                                               // 30
-                        res.payload.title                                                                    // 31
-                    );                                                                                       // 32
-                } else if (res.payload) {                                                                    // 33
-                    window.plugin.notification.local.add(                                                    // 34
-                        _.extend(options.notificationOptions, {                                              // 35
-                            message: res.payload.message,                                                    // 36
-                            title: res.payload.title,                                                        // 37
-                            autoCancel: true                                                                 // 38
-                        })                                                                                   // 39
-                    );                                                                                       // 40
-                }                                                                                            // 41
-            }                                                                                                // 42
-        }                                                                                                    // 43
-                                                                                                             // 44
-        Tracker.autorun(function(c) {                                                                        // 45
-                                                                                                             // 46
-            if (Meteor.user()) {                                                                             // 47
-                window.plugins.pushNotification.register(successHandler, errorHandler, {                     // 48
-                    "senderID": options.senderId.toString(),                                                 // 49
-                    "ecb": "Cordova.onNotificationGCM"                                                       // 50
-                });                                                                                          // 51
-                c.stop();                                                                                    // 52
-            }                                                                                                // 53
-        });                                                                                                  // 54
-                                                                                                             // 55
-        return instance                                                                                      // 56
-                                                                                                             // 57
-    }                                                                                                        // 58
-                                                                                                             // 59
-} else if (Meteor.isServer) {                                                                                // 60
-                                                                                                             // 61
-    NotificationClient = function(options) {                                                                 // 62
-                                                                                                             // 63
-        if (!options || !options.gcmAuthorization || !options.senderId) {                                    // 64
-            return false;                                                                                    // 65
-        }                                                                                                    // 66
-                                                                                                             // 67
-        var Future = Npm.require('fibers/future'),                                                           // 68
-            instance = {};                                                                                   // 69
-                                                                                                             // 70
-        Cordova.sendNotifications = function(users, data) {                                                  // 71
+        var messageHandler = options.messageHandler || function(payload, foreground) {                       // 21
+            if (!payload) return null;                                                                       // 22
+            if (foreground) {                                                                                // 23
+                navigator.notification.alert(                                                                // 24
+                    payload.message,                                                                         // 25
+                    options.alertCallback,                                                                   // 26
+                    payload.title                                                                            // 27
+                );                                                                                           // 28
+            } else {                                                                                         // 29
+                window.plugin.notification.local.add(                                                        // 30
+                    _.extend(options.notificationOptions, {                                                  // 31
+                        message: payload.message,                                                            // 32
+                        title: payload.title,                                                                // 33
+                        autoCancel: true                                                                     // 34
+                    })                                                                                       // 35
+                );                                                                                           // 36
+            }                                                                                                // 37
+        };                                                                                                   // 38
+                                                                                                             // 39
+        Cordova.onNotificationGCM = options.onNotificationGCM || function(res) {                             // 40
+            if (res.event === 'registered') {                                                                // 41
+                if (res.regid) {                                                                             // 42
+                    Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback); // 43
+                }                                                                                            // 44
+            } else if (res.event === 'message') {                                                            // 45
+                messageHandler(res.payload, res.foreground);                                                 // 46
+            }                                                                                                // 47
+        }                                                                                                    // 48
+                                                                                                             // 49
+        Tracker.autorun(function(c) {                                                                        // 50
+                                                                                                             // 51
+            if (Meteor.user()) {                                                                             // 52
+                window.plugins.pushNotification.register(successHandler, errorHandler, {                     // 53
+                    "senderID": options.senderId.toString(),                                                 // 54
+                    "ecb": "Cordova.onNotificationGCM"                                                       // 55
+                });                                                                                          // 56
+                c.stop();                                                                                    // 57
+            }                                                                                                // 58
+        });                                                                                                  // 59
+                                                                                                             // 60
+        return instance                                                                                      // 61
+                                                                                                             // 62
+    }                                                                                                        // 63
+                                                                                                             // 64
+} else if (Meteor.isServer) {                                                                                // 65
+                                                                                                             // 66
+    NotificationClient = function(options) {                                                                 // 67
+                                                                                                             // 68
+        if (!options || !options.gcmAuthorization || !options.senderId) {                                    // 69
+            return false;                                                                                    // 70
+        }                                                                                                    // 71
                                                                                                              // 72
-            if (typeof users === 'string')                                                                   // 73
-                users = Meteor.users.find(users).fetch();                                                    // 74
-            else if (typeof users === "object" && users._id)                                                 // 75
-                users = [users];                                                                             // 76
-            else if (users instanceof Mongo.Cursor)                                                          // 77
-                users = users.fetch()                                                                        // 78
-            else if (!users instanceof Array)                                                                // 79
+        var Future = Npm.require('fibers/future'),                                                           // 73
+            instance = {};                                                                                   // 74
+                                                                                                             // 75
+        instance.sendNotification = function(users, data) {                                                  // 76
+                                                                                                             // 77
+            if (typeof users === 'string')                                                                   // 78
+                users = Meteor.users.find(users).fetch();                                                    // 79
+            else if (typeof users === "object" && users._id)                                                 // 80
+                users = [users];                                                                             // 81
+            else if (users instanceof Mongo.Cursor)                                                          // 82
+                users = users.fetch()                                                                        // 83
+            else if (!users instanceof Array)                                                                // 84
                 throw new Meteor.Error('bad_users_argument', 'Supplied user(s) data is not one of: user id, user object, cursor, array of user objects.');
-                                                                                                             // 81
-            var regids = _.without(                                                                          // 82
-                    _.pluck(users, 'regid'),                                                                 // 83
-                    undefined),                                                                              // 84
-                payload = {                                                                                  // 85
-                    registration_ids: regids,                                                                // 86
-                    data: data                                                                               // 87
-                },                                                                                           // 88
-                headers = {                                                                                  // 89
-                    'Content-Type': 'application/json',                                                      // 90
-                    'Authorization': 'key=' + options.gcmAuthorization                                       // 91
-                },                                                                                           // 92
-                url = "https://android.googleapis.com/gcm/send",                                             // 93
-                fut = new Future();                                                                          // 94
-                                                                                                             // 95
-            if (regids.length) {                                                                             // 96
-                HTTP.post(url, {                                                                             // 97
-                        headers: headers,                                                                    // 98
-                        data: payload                                                                        // 99
-                    },                                                                                       // 100
-                    function(err, res) {                                                                     // 101
-                        if (err) {                                                                           // 102
-                            fut.throw(err);                                                                  // 103
-                        } else {                                                                             // 104
-                            fut.return({                                                                     // 105
-                                response: res,                                                               // 106
-                                userCount: regids.length                                                     // 107
-                            });                                                                              // 108
-                        }                                                                                    // 109
-                    }                                                                                        // 110
-                );                                                                                           // 111
-            }                                                                                                // 112
-                                                                                                             // 113
-            return fut.wait();                                                                               // 114
-                                                                                                             // 115
-        };                                                                                                   // 116
-                                                                                                             // 117
-        Meteor.methods({                                                                                     // 118
-            'cordova-notifications/updateRegid': function(regid) {                                           // 119
-                Meteor.users.update(this.userId, {                                                           // 120
-                    $set: {                                                                                  // 121
-                        regid: regid                                                                         // 122
-                    }                                                                                        // 123
-                });                                                                                          // 124
-            }                                                                                                // 125
-        });                                                                                                  // 126
-                                                                                                             // 127
-        return instance;                                                                                     // 128
-                                                                                                             // 129
-    }                                                                                                        // 130
-                                                                                                             // 131
-} else {                                                                                                     // 132
-                                                                                                             // 133
-    NotificationClient = function() {};                                                                      // 134
-                                                                                                             // 135
-}                                                                                                            // 136
+                                                                                                             // 86
+            var regids = _.without(                                                                          // 87
+                    _.pluck(users, 'regid'),                                                                 // 88
+                    undefined),                                                                              // 89
+                payload = {                                                                                  // 90
+                    registration_ids: regids,                                                                // 91
+                    data: data                                                                               // 92
+                },                                                                                           // 93
+                headers = {                                                                                  // 94
+                    'Content-Type': 'application/json',                                                      // 95
+                    'Authorization': 'key=' + options.gcmAuthorization                                       // 96
+                },                                                                                           // 97
+                url = "https://android.googleapis.com/gcm/send",                                             // 98
+                fut = new Future();                                                                          // 99
+                                                                                                             // 100
+            if (regids.length) {                                                                             // 101
+                HTTP.post(url, {                                                                             // 102
+                        headers: headers,                                                                    // 103
+                        data: payload                                                                        // 104
+                    },                                                                                       // 105
+                    function(err, res) {                                                                     // 106
+                        if (err) {                                                                           // 107
+                            fut.throw(err);                                                                  // 108
+                        } else {                                                                             // 109
+                            fut.return({                                                                     // 110
+                                response: res,                                                               // 111
+                                userCount: regids.length                                                     // 112
+                            });                                                                              // 113
+                        }                                                                                    // 114
+                    }                                                                                        // 115
+                );                                                                                           // 116
+            }                                                                                                // 117
+                                                                                                             // 118
+            return fut.wait();                                                                               // 119
+                                                                                                             // 120
+        };                                                                                                   // 121
+                                                                                                             // 122
+        Meteor.methods({                                                                                     // 123
+            'cordova-notifications/updateRegid': function(regid) {                                           // 124
+                Meteor.users.update(this.userId, {                                                           // 125
+                    $set: {                                                                                  // 126
+                        regid: regid                                                                         // 127
+                    }                                                                                        // 128
+                });                                                                                          // 129
+            }                                                                                                // 130
+        });                                                                                                  // 131
+                                                                                                             // 132
+        return instance;                                                                                     // 133
+                                                                                                             // 134
+    }                                                                                                        // 135
+                                                                                                             // 136
+} else {                                                                                                     // 137
+                                                                                                             // 138
+    NotificationClient = function() {};                                                                      // 139
+                                                                                                             // 140
+}                                                                                                            // 141
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }).call(this);
