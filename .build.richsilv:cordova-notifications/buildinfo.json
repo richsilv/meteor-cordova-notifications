@@ -3,7 +3,7 @@
   "buildDependencies": {
     "os.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "07335e65c4bcdc1868fd918fda8f4db023e598ab",
+        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
         "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414",
         "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-server.js": "02cc3423eae09bea5d3b326b277a590677a5bede"
       },
@@ -11,14 +11,14 @@
     },
     "web.browser.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "07335e65c4bcdc1868fd918fda8f4db023e598ab",
+        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
         "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
       },
       "directories": []
     },
     "web.cordova.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "07335e65c4bcdc1868fd918fda8f4db023e598ab",
+        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
         "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
       },
       "directories": []
@@ -26,7 +26,7 @@
   },
   "pluginDependencies": {
     "files": {
-      "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "07335e65c4bcdc1868fd918fda8f4db023e598ab"
+      "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa"
     },
     "directories": []
   },
