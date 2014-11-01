@@ -26,7 +26,9 @@ var notificationClient = new NotificationClient(options)
 ### options
 
 *__senderId__ (required)* - the Project Number of your Google API project (given at the top of the "Overview" page).
+
 *__gcmAuthorization__ (required)* - the GCM API key you obtained by following the Android instructions linked above.
+
 *__registeredCallback__ (optional)* - a function to call on the client once it registers a new *regid* in the database and is thus ready to accept push notifications.
 
 ## API
@@ -36,6 +38,7 @@ var notificationClient = new NotificationClient(options)
 Send a notification to the specified users.
 
 *__users__* - can be an individual user object, an array of user objects, a cursor on the Meteor.users collection, or a single userId.
+
 *__data__* - the payload to send in the notification.  In default usage, this would contain two properties:
 
 * *title* - the title of the notifications message.
