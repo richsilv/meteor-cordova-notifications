@@ -15,7 +15,8 @@
       "package": "meteor"
     },
     {
-      "package": "http"
+      "package": "http",
+      "constraint": "1.0.8"
     }
   ],
   "resources": [

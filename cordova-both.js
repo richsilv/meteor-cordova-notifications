@@ -18,9 +18,9 @@ if (Meteor.isCordova) {
             console.log("Error " + e);
         };
 
-        var messageHandler = options.messageHandler || function(payload, foreground) {
+        var messageHandler = options.messageHandler || function(payload, foreground, coldstart) {
             if (!payload) return null;
-            if (foreground) {
+            if (foreground && !coldstart) {
                 navigator.notification.alert(
                     payload.message,
                     options.alertCallback,
@@ -43,17 +43,21 @@ if (Meteor.isCordova) {
                     Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback);
                 }
             } else if (res.event === 'message') {
-                messageHandler(res.payload, res.foreground);
+                messageHandler(res.payload, res.foreground, res.coldstart);
             }
         }
 
         Tracker.autorun(function(c) {
 
             if (Meteor.user()) {
-                window.plugins.pushNotification.register(successHandler, errorHandler, {
-                    "senderID": options.senderId.toString(),
-                    "ecb": "Cordova.onNotificationGCM"
-                });
+                if (device.platform.toLowerCase() === 'android') {
+                    window.plugins.pushNotification.register(successHandler, errorHandler, {
+                        "senderID": options.senderId.toString(),
+                        "ecb": "Cordova.onNotificationGCM"
+                    });
+                } else {
+                    // TODO: APN HANDLER REGISTRATION HERE
+                }
                 c.stop();
             }
         });

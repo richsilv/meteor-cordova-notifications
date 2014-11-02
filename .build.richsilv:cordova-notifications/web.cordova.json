@@ -15,10 +15,12 @@
       "package": "meteor"
     },
     {
-      "package": "tracker"
+      "package": "tracker",
+      "constraint": "1.0.3"
     },
     {
-      "package": "accounts-base"
+      "package": "accounts-base",
+      "constraint": "1.1.2"
     }
   ],
   "resources": [

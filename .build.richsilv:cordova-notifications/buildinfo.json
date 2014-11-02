@@ -3,34 +3,34 @@
   "buildDependencies": {
     "os.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414",
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-server.js": "02cc3423eae09bea5d3b326b277a590677a5bede"
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/package.js": "eb56759ee79ca9e29afcda147cb0fd9db45c99ab",
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414",
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/cordova-server.js": "02cc3423eae09bea5d3b326b277a590677a5bede"
       },
       "directories": []
     },
     "web.browser.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/package.js": "eb56759ee79ca9e29afcda147cb0fd9db45c99ab",
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
       },
       "directories": []
     },
     "web.cordova.json": {
       "files": {
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa",
-        "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/package.js": "eb56759ee79ca9e29afcda147cb0fd9db45c99ab",
+        "/home/richard/Meteor/Packages/richsilv:cordova-notifications/cordova-both.js": "e3420f5d78edeccb8d764062a5f8fbfa3cb91414"
       },
       "directories": []
     }
   },
   "pluginDependencies": {
     "files": {
-      "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications/package.js": "d57cb21463005b28594e7dddbd804997b7b29caa"
+      "/home/richard/Meteor/Packages/richsilv:cordova-notifications/package.js": "eb56759ee79ca9e29afcda147cb0fd9db45c99ab"
     },
     "directories": []
   },
-  "source": "/home/richard/Meteor/cordova-notifications/packages/richsilv:cordova-notifications",
+  "source": "/home/richard/Meteor/Packages/richsilv:cordova-notifications",
   "buildTimeDirectDependencies": {
     "tracker": "1.0.3",
     "accounts-base": "1.1.2",

@@ -15,7 +15,8 @@
       "package": "meteor"
     },
     {
-      "package": "accounts-base"
+      "package": "accounts-base",
+      "constraint": "1.1.2"
     }
   ],
   "resources": [
