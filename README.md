@@ -31,7 +31,7 @@ var notificationClient = new NotificationClient(options)
 
 *__registeredCallback__ (optional)* - a function to call on the client once it registers a new *regid* in the database and is thus ready to accept push notifications.
 
-*__messageHandler__ (optional)* - a function to override the default handler which is called on receipt of a new notification message.  It is called with two arguments: `payload`, which contains the data payload supplied to the notifications server, and `foreground`, a boolean which indicates whether the application is currently running in the foreground.  The default handler behaviour is described below.
+*__messageHandler__ (optional)* - a function to override the default handler which is called on receipt of a new notification message.  It is called with three arguments: `payload`, which contains the data payload supplied to the notifications server, `foreground`, a boolean which indicates whether the application is currently running in the foreground, and `coldstart`, a boolean which indicates whether the notification has been fired because it has been tapped in the notifications tray.  The default handler behaviour is described below.
 
 ## API
 
@@ -55,6 +55,8 @@ If the application is currently open in the foreground, a default UI alert box p
 The GCM protocol is actually much more flexible than this - an arbitrary object (up to 4kb) can be passed as the payload, whilst the client callback on receipt of notifications can be completeley customised by overriding the `messageHandler` callback (see above).  See `cordova-both.js` for the code behind the default behaviour.
 
 Note that a `Cordova` object is added to the global namespace on the client side - this is necessary as the GCM server requires a function in global scope to be supplied as a callback.
+
+## Demo - [here](https://github.com/richsilv/cordova-notifications-demo)
 
 ## TODO
 
