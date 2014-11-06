@@ -4,8 +4,8 @@ if (Meteor.isCordova) {
 
     NotificationClient = function(options) {
 
-        if (!options || !options.gcmAuthorization || !options.senderId) {
-            throw new Meteor.Error('required_options', 'gcmAuthorization and senderId must be supplied as options as a minimum');
+        if (!options || !options.senderId) {
+            throw new Meteor.Error('required_options', 'senderId must be supplied as options as a minimum');
         }
 
         var instance = {};
