@@ -1,5 +1,6 @@
 meteor-cordova-notifications
 ============================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/richsilv/meteor-cordova-notifications?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Simple push notifications for Cordova apps built using Meteor.
 
