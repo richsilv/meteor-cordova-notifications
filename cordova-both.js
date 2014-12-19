@@ -5,7 +5,7 @@ if (Meteor.isCordova) {
     NotificationClient = function(options) {
 
         if (!options || !options.senderId) {
-            throw new Meteor.Error('required_options', 'senderId must be supplied as options as a minimum');
+            throw new Meteor.Error('required_options', 'senderId must be supplied as an option as a minimum');
         }
 
         var instance = {};
@@ -118,6 +118,8 @@ if (Meteor.isCordova) {
                         }
                     }
                 );
+            } else {
+                fut.return(null);
             }
 
             return fut.wait();

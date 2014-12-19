@@ -2,7 +2,7 @@
   "isopack-1": {
     "name": "richsilv:cordova-notifications",
     "summary": "Simple push notifications for Cordova apps built using Meteor.",
-    "version": "0.1.2+2448517b72a0aa7402d9cb99ee0a10a9b84e4c4f",
+    "version": "0.1.5+085ed3263ce77ed0feaf00bcf9d63a2835b51a7a",
     "earliestCompatibleVersion": "0.0.0",
     "isTest": false,
     "builds": [
