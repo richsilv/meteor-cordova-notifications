@@ -34,6 +34,8 @@ var notificationClient = new NotificationClient(options)
 
 *__messageHandler__ (optional)* - a function to override the default handler which is called on receipt of a new notification message.  It is called with three arguments: `payload`, which contains the data payload supplied to the notifications server, `foreground`, a boolean which indicates whether the application is currently running in the foreground, and `coldstart`, a boolean which indicates whether the notification has been fired because it has been tapped in the notifications tray.  The default handler behaviour is described below.
 
+*__removeOnLogout__ (optional)* - this will instruct the server to remove a users regid on logout to ensure that their device does not receive notifications whilst they're logged out.  The regid will be added again if they log back in.
+
 ## API
 
 Note that NotificationClient can only be used to send messages to users who have previously logged in to the app on a mobile device (via any means).
