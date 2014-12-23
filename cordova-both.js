@@ -58,7 +58,6 @@ if (Meteor.isCordova) {
                 } else {
                     // TODO: APN HANDLER REGISTRATION HERE
                 }
-                c.stop();
             }
         });
 
@@ -135,6 +134,22 @@ if (Meteor.isCordova) {
                 });
             }
         });
+
+        if (options.removeOnLogout) {
+
+            Meteor.users.find({
+                "status.online": true
+            }).observe({
+                removed: function(user) {
+                    Meteor.users.update(user._id, {
+                        $unset: {
+                            regid: true
+                        }
+                    });
+                }
+            });
+
+        }
 
         return instance;
 

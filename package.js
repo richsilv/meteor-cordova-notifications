@@ -2,7 +2,7 @@ Package.describe({
   name: 'richsilv:cordova-notifications',
   summary: 'Simple push notifications for Cordova apps built using Meteor.',
   git: 'https://github.com/richsilv/meteor-cordova-notifications',
-  version: "0.1.5"
+  version: "0.1.6"
 });
 
 Cordova.depends({
@@ -16,6 +16,7 @@ Package.on_use(function(api) {
   api.use('tracker@1.0.3', 'web.cordova');
   api.use('http@1.0.8', 'server');
   api.use('accounts-base@1.1.2', 'client');
+  api.use('mizzao:user-status@0.6.3', 'server');
 
   api.add_files('cordova-both.js');
 
