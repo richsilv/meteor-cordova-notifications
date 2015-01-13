@@ -61,7 +61,22 @@ Note that a `Cordova` object is added to the global namespace on the client side
 
 ## A Note about Schemas
 
-In order to use this package along with the excellent [Collection2](https://github.com/aldeed/meteor-collection2), any Schema you set up for user docs will have to allow an optional `regid` field for GCM.
+In order to use this package along with the excellent [Collection2](https://github.com/aldeed/meteor-collection2), any Schema you set up for user docs will have to allow an optional `regid` field for GCM and a `status` field for compatability with the included `mizzao:user-status` package.  For example:
+
+```javascript
+Schemas.User = new SimpleSchema({
+  status: {
+    type: Object,
+    optional: true,
+    blackbox: true
+  },
+  regid: {
+    type: String,
+    optional: true
+  }
+  ... // other stuff
+});
+```
 
 ## Demo - [here](https://github.com/richsilv/cordova-notifications-demo)
 
