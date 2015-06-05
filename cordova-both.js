@@ -127,6 +127,7 @@ if (Meteor.isCordova) {
 
         Meteor.methods({
             'cordova-notifications/updateRegid': function(regid) {
+                check && check(regid, String);
                 Meteor.users.update(this.userId, {
                     $set: {
                         regid: regid
