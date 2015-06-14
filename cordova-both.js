@@ -40,7 +40,7 @@ if (Meteor.isCordova) {
         Cordova.onNotificationGCM = options.onNotificationGCM || function(res) {
             if (res.event === 'registered') {
                 if (res.regid) {
-                    Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback);
+                    Meteor.call('cordova-notifications/updateRegid', res.regid, options.registeredCallback && options.registeredCallback.bind(res));
                 }
             } else if (res.event === 'message') {
                 messageHandler(res.payload, res.foreground, res.coldstart);
