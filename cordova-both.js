@@ -28,7 +28,7 @@ if (Meteor.isCordova) {
                 );
             } else {
                 window.plugin.notification.local.add(
-                    _.extend(options.notificationOptions, {
+                    _.extend({}, options.notificationOptions, {
                         message: payload.message,
                         title: payload.title,
                         autoCancel: true
