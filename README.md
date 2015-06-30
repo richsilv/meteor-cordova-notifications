@@ -36,6 +36,34 @@ var notificationClient = new NotificationClient(options)
 
 *__removeOnLogout__ (optional)* - if *true* this will instruct the server to remove a users regid on logout to ensure that their device does not receive notifications whilst they're logged out.  The regid will be added again if they log back in.
 
+### Example settings and initialisation
+
+**settings.json:**
+
+```json
+{
+  "GCM": {
+    "authorization": "YOUR_AUTHORIZATION_KEY"
+  },
+  "public": {
+    "GCM": {
+      "senderId": "YOUR_PROJECT_ID"
+    }
+  }
+}
+```
+
+**somewhere that runs on both client and server:**
+
+```javascript
+Meteor.startup(function() {
+  Meteor.notificationClient = new NotificationClient({
+    senderId: Meteor.settings.public.GCM.senderId,
+    gcmAuthorization: Meteor.settings.GCM && Meteor.settings.GCM.authorization
+  })
+})
+```
+
 ## API
 
 Note that NotificationClient can only be used to send messages to users who have previously logged in to the app on a mobile device (via any means).
