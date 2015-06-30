@@ -16,7 +16,7 @@ The result is a plug-and-play notifications package which should be extremely st
 
 ## How to use this Package
 
-Firstly, set up a new Google API project and enable GCM using [these instructions](https://developer.android.com/google/gcm/gs.html) (you only need to follow the instructions from the start of  "Creating a Google API Project" to the end of "Obtaining an API Key").
+Firstly, set up a new Google API project and enable GCM using [these instructions](https://console.developers.google.com/flows/enableapi?apiid=googlecloudmessaging&keyType=SERVER_SIDE&r=0.0.0.0/0).
 
 Then, in a code block that will run on *both client and server*:
 
