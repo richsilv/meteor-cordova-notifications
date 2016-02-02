@@ -6,8 +6,8 @@ Package.describe({
 });
 
 Cordova.depends({
-  "de.appplant.cordova.plugin.local-notification" : "0.8.1",
-  "com.phonegap.plugins.pushplugin" : "2.2.1",
+  "de.appplant.cordova.plugin.local-notification" : "0.8.4",
+  "com.phonegap.plugins.pushplugin" : "https://github.com/phonegap-build/PushPlugin.git#894232cd239130435ed8a21b3a321422b19aaa73",
   "org.apache.cordova.dialogs": "0.2.10"
 });
 
@@ -17,6 +17,7 @@ Package.on_use(function(api) {
   api.use('http@1.0.8', 'server');
   api.use('accounts-base@1.1.2', 'client');
   api.use('mizzao:user-status@0.6.3', 'server');
+	api.use('check@1.1.0', 'server');
 
   api.add_files('cordova-both.js');
 
