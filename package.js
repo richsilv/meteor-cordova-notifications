@@ -7,7 +7,7 @@ Package.describe({
 
 Cordova.depends({
   "de.appplant.cordova.plugin.local-notification" : "0.8.4",
-  "com.phonegap.plugins.pushplugin" : "2.2.1",
+  "com.phonegap.plugins.pushplugin" : "https://github.com/phonegap-build/PushPlugin.git#894232cd239130435ed8a21b3a321422b19aaa73",
   "org.apache.cordova.dialogs": "0.2.10"
 });
 
