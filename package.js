@@ -17,6 +17,7 @@ Package.on_use(function(api) {
   api.use('http@1.0.8', 'server');
   api.use('accounts-base@1.1.2', 'client');
   api.use('mizzao:user-status@0.6.3', 'server');
+	api.use('check@1.1.0', 'server');
 
   api.add_files('cordova-both.js');
 
