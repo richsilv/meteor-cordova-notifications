@@ -28,7 +28,7 @@ var notificationClient = new NotificationClient(options)
 
 *__senderId__ (required)* - the Project Number of your Google API project (given at the top of the "Overview" page).
 
-*__gcmAuthorization__ (required)* - the GCM API key you obtained by following the Android instructions linked above.  Note that this should **NOT** be visible to the client, so it's recommended to pull this from [Meteor.settings](https://docs.meteor.com/#/full/meteordeploy) or else a server-only collection in such a way that `null` or `undefined` will be passed on the the client side, but the correct code on the server side.
+*__gcmAuthorization__ (required)* - the GCM API key you obtained by following the Android instructions linked above.  Note that this should **NOT** be visible to the client, so it's recommended to pull this from [Meteor.settings](https://docs.meteor.com/#/full/meteordeploy) or else a server-only collection in such a way that `null` or `undefined` will be passed on the client side, but the correct code on the server side.
 
 *__registeredCallback__ (optional)* - a function to call on the client once it registers a new *regid* in the database and is thus ready to accept push notifications.
 
